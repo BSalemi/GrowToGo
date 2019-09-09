@@ -1,0 +1,12 @@
+#plant-header {
+    display: flex;
+    justify-content: center;
+    opacity: .8;
+    height: 7rem;
+    padding: 1rem;
+  }
+
+  #plant-header img {
+    height: 6rem;
+    width: auto;
+  }
