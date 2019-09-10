@@ -48,7 +48,7 @@ addUserForm.addEventListener('submit', function(e){
     .then(res => res.json())
     .then(function(object){
         loggedIn = object
-        console.log(loggedIn, "loggedIn")
+        // console.log(loggedIn, "loggedIn")
         if(loggedIn){
             let div = document.createElement('div')
             let welcome = document.querySelector('#welcome')
@@ -85,7 +85,22 @@ function renderPlants(plants){
 }
 
 function addToCart(event){
-    let cartId = loggedIn.carts[loggedIn.carts.length - 1]
+    console.log(event)
+    let cartId = loggedIn.carts[loggedIn.carts.length - 1].id
+    console.log(cartId)
+    fetch(CART_PLANTS_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            cart_id: `${cartId}`,
+            plant_id: `${event.target.dataset.plantId}`,
+        }),
+    })
+    .then(res => res.json())
+    .then(console.log)
 }
 
 // function checkForUser(){
