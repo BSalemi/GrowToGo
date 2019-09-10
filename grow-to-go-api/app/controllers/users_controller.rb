@@ -17,6 +17,17 @@ class UsersController < ApplicationController
     end 
 
     def create 
-        byebug
+        user = User.create(user_params)
+        cart = Cart.create(user_id: user.id)
+        render json: user
+        # (:include => {
+        #     cart: {except: [:created_at, :updated_at]}
+        # }, except: [:created_at, :updated_at])
+    end 
+
+    private 
+
+    def user_params
+        params.require(:user).permit(:name, :email)
     end 
 end
