@@ -1,12 +1,12 @@
 class CartPlantsController < ApplicationController
 
     def index
-        cart_plants = Cart_Plant.all 
+        cart_plants = CartPlant.all 
         render json: cart_plants, except: [:created_at, :updated_at]
     end 
 
     def create 
-        cart_plant = Cart_Plant.create(cart_plant_params)
+        cart_plant = CartPlant.create(cart_plant_params)
         render json: cart_plant, except: [:created_at, :updated_at]
     end 
    
