@@ -78,6 +78,7 @@ function renderPlants(plants){
         <p><strong>Experience Level:</strong> ${plant.exp_level}</p>
         <p><strong>Light Required:</strong> ${plant.light_required}</p>
         <button onClick=addToCart(event) data-plant-id="${plant.id}"> Add To Cart </button>
+        </br>
       </div>`
     })
 }
