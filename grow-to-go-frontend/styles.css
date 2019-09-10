@@ -29,3 +29,12 @@ body {
     justify-self: center;
   }
   
+  .container {
+    padding: 1rem;
+    width: stretch;
+    height: auto;
+    /* display: none; */
+    opacity: .8;
+    justify-self: center
+  }
+  

@@ -4,7 +4,7 @@ const CART_PLANTS_URL = `${BASE_URL}/cart_plants`
 const CARTS_URL = `${BASE_URL}/carts`
 const USERS_URL = `${BASE_URL}/users`
 
-let loggedIn = ""
+let loggedIn = null
 let signedUp = false 
 
 const signUpForm = document.querySelector(".container")
@@ -24,4 +24,24 @@ signUpBtn.addEventListener('click', () => {
     } else {
         signUpForm.style.display = "block"
     }
+})
+
+addUserForm.addEventListener('submit', function(e){
+    e.preventDefault()
+    fetch(USERS_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            name: inputFields[0].value,
+            email: inputFields[1].value,
+        })
+    })
+    .then(res => res.json())
+    .then(function(object){
+        loggedIn = `${object.id}`
+        console.log(loggedIn)
+    })
 })

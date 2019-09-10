@@ -15,4 +15,8 @@ class UsersController < ApplicationController
             render json: {message: "User not found."}
         end 
     end 
+
+    def create 
+        byebug
+    end 
 end
