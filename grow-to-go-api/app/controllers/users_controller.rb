@@ -24,9 +24,6 @@ class UsersController < ApplicationController
         },  :except => [:created_at, :updated_at])
     end 
 
-    # render json: user(:include => {
-    #     cart: {except: [:created_at, :updated_at]}
-    # }, except: [:created_at, :updated_at])
 
     private 
 
