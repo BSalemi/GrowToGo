@@ -47,12 +47,13 @@ addUserForm.addEventListener('submit', function(e){
     })
     .then(res => res.json())
     .then(function(object){
-        console.log(object, "object")
-        loggedIn = `${object.id}`
+        loggedIn = object
+        console.log(loggedIn, "loggedIn")
         if(loggedIn){
             let div = document.createElement('div')
             let welcome = document.querySelector('#welcome')
-            div.innerText = `Welcome ${object.name}`
+            div.innerText = `Welcome ${loggedIn.name}`
+            loggedIn.carts[loggedIn.carts.length - 1].id
             welcome.append(div)
             signUpBtn.style.display = 'none'
             signUpBtnPhrase.style.display = 'none'
@@ -81,6 +82,10 @@ function renderPlants(plants){
         </br>
       </div>`
     })
+}
+
+function addToCart(event){
+    let cartId = loggedIn.carts[loggedIn.carts.length - 1]
 }
 
 // function checkForUser(){
