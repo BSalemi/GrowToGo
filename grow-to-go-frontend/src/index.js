@@ -12,6 +12,9 @@ const addUserForm = document.querySelector(".signup-form")
 const inputFields = document.querySelectorAll(".input-text")
 const signUpBtn = document.querySelector("#signup-btn")
 const signUpBtnPhrase = document.querySelector(".sign-up-btn")
+const mainContainer = document.querySelector("main")
+
+console.log(mainContainer)
 
 // console.log(signUpForm)
 // console.log(addUserForm)
@@ -65,8 +68,14 @@ function fetchPlants(){
     .then(console.log)
 }
 
-function checkForUser(){
-    if(localStorage.loggedInUser){
-        fetchPlants()
-    }
+function renderPlants(plants){
+    plants.forEach(plant => {
+
+    })
 }
+
+// function checkForUser(){
+//     if(localStorage.loggedInUser){
+//         fetchPlants()
+//     }
+// }
