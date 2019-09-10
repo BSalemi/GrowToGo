@@ -54,7 +54,19 @@ addUserForm.addEventListener('submit', function(e){
             signUpBtn.style.display = 'none'
             signUpBtnPhrase.style.display = 'none'
             signUpForm.style.display = 'none'
-            
+            fetchPlants()   
         }
     })
 })
+
+function fetchPlants(){
+    fetch(PLANTS_URL)
+    .then(res => res.json())
+    .then(console.log)
+}
+
+function checkForUser(){
+    if(localStorage.loggedInUser){
+        fetchPlants()
+    }
+}
