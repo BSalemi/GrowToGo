@@ -74,8 +74,9 @@ function renderPlants(plants){
         <img src=${plant.image} class="plant-avatar" />
         <p> ${plant.size} - $${plant.price}<p>
         <h2>${plant.name}</h2>
-        <p>${plant.species} - ${plant.exp_level}</p>
-        <p>${plant.light_required}</p>
+        <p><em>${plant.species}</em></p> 
+        <p><strong>Experience Level:</strong> ${plant.exp_level}</p>
+        <p><strong>Light Required:</strong> ${plant.light_required}</p>
         <button onClick=addToCart(event) data-plant-id="${plant.id}"> Add To Cart </button>
       </div>`
     })
