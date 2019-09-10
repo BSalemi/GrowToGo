@@ -1,9 +1,18 @@
 class CartPlantsController < ApplicationController
 
     def index
-        cart_plants = Cart_Plants.all 
+        cart_plants = Cart_Plant.all 
         render json: cart_plants, except: [:created_at, :updated_at]
     end 
 
+    def create 
+        cart_plant = Cart_Plant.create()
+    end 
    
+
+    private
+    
+    def cart_plant_params
+        params.require(:cart_plant).permit(:cart_id, :plant_id)
+    end 
 end
