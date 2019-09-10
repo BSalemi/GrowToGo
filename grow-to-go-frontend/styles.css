@@ -31,10 +31,10 @@ body {
   
   .container {
     padding: 1rem;
-    width: stretch;
-    height: auto;
+    width: 225px;
+    height: 400px;
     display: none;
     opacity: .8;
-    justify-self: center
+    margin: auto
   }
   

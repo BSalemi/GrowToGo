@@ -19,11 +19,14 @@ class UsersController < ApplicationController
     def create 
         user = User.create(user_params)
         cart = Cart.create(user_id: user.id)
-        render json: user
-        # (:include => {
-        #     cart: {except: [:created_at, :updated_at]}
-        # }, except: [:created_at, :updated_at])
+        render json: user.to_json(:include => {
+            :carts => {:except => [:created_at, :updated_at]},
+        },  :except => [:created_at, :updated_at])
     end 
+
+    # render json: user(:include => {
+    #     cart: {except: [:created_at, :updated_at]}
+    # }, except: [:created_at, :updated_at])
 
     private 
 
