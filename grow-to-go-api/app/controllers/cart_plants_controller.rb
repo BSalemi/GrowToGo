@@ -6,7 +6,8 @@ class CartPlantsController < ApplicationController
     end 
 
     def create 
-        cart_plant = Cart_Plant.create()
+        cart_plant = Cart_Plant.create(cart_plant_params)
+        render json: cart_plant, except: [:created_at, :updated_at]
     end 
    
 
