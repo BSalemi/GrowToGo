@@ -13,9 +13,10 @@ const inputFields = document.querySelectorAll(".input-text")
 const signUpBtn = document.querySelector("#signup-btn")
 const signUpBtnPhrase = document.querySelector(".sign-up-btn")
 const mainContainer = document.querySelector("main")
+const cartContainer = document.querySelector(".cart-container")
 
-console.log(mainContainer)
-
+// console.log(cartContainer)
+// console.log(mainContainer)
 // console.log(signUpForm)
 // console.log(addUserForm)
 // console.log(inputFields)
