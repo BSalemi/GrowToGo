@@ -65,12 +65,19 @@ addUserForm.addEventListener('submit', function(e){
 function fetchPlants(){
     fetch(PLANTS_URL)
     .then(res => res.json())
-    .then(console.log)
+    .then(plants => renderPlants(plants))
 }
 
 function renderPlants(plants){
     plants.forEach(plant => {
-
+        mainContainer.innerHTML += `<div class="card">
+        <img src=${plant.image} class="plant-avatar" />
+        <p> ${plant.size} - $${plant.price}<p>
+        <h2>${plant.name}</h2>
+        <p>${plant.species} - ${plant.exp_level}</p>
+        <p>${plant.light_required}</p>
+        <button onClick=addToCart(event) data-plant-id="${plant.id}"> Add To Cart </button>
+      </div>`
     })
 }
 
