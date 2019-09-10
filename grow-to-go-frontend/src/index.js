@@ -11,6 +11,7 @@ const signUpForm = document.querySelector(".container")
 const addUserForm = document.querySelector(".signup-form")
 const inputFields = document.querySelectorAll(".input-text")
 const signUpBtn = document.querySelector("#signup-btn")
+const signUpBtnPhrase = document.querySelector(".sign-up-btn")
 
 // console.log(signUpForm)
 // console.log(addUserForm)
@@ -18,8 +19,10 @@ const signUpBtn = document.querySelector("#signup-btn")
 // console.log(signUpBtn)
 
 signUpBtn.addEventListener('click', () => {
+    signUpBtn.style.display = 'none',
+    signUpBtnPhrase.style.display = 'none',
     signedUp = !signedUp
-    if (signedUp) {
+    if (!signedUp) {
         signUpForm.style.display = "none"
     } else {
         signUpForm.style.display = "block"
@@ -41,7 +44,17 @@ addUserForm.addEventListener('submit', function(e){
     })
     .then(res => res.json())
     .then(function(object){
+        console.log(object, "object")
         loggedIn = `${object.id}`
-        console.log(loggedIn)
+        if(loggedIn){
+            let div = document.createElement('div')
+            let welcome = document.querySelector('#welcome')
+            div.innerText = `Welcome ${object.name}`
+            welcome.append(div)
+            signUpBtn.style.display = 'none'
+            signUpBtnPhrase.style.display = 'none'
+            signUpForm.style.display = 'none'
+            
+        }
     })
 })

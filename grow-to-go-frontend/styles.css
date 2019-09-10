@@ -33,7 +33,7 @@ body {
     padding: 1rem;
     width: stretch;
     height: auto;
-    /* display: none; */
+    display: none;
     opacity: .8;
     justify-self: center
   }
