@@ -2,9 +2,10 @@ class CartsController < ApplicationController
 
     def index 
         carts = Cart.all 
-        render json: carts(:include => {
-            user: {:only => [:name]},
-        }, except: [:created_at, :updated_at])
+        render json: carts, :except => [:created_at, :updated_at]
+        # render json: carts(:include => {
+        #     :user => {:only => [:name]},
+        # }, :except => [:created_at, :updated_at])
     end 
 
     def show 
