@@ -6,6 +6,8 @@ const USERS_URL = `${BASE_URL}/users`
 
 let loggedIn = null
 let signedUp = false 
+const emptyCart =  "https://img.icons8.com/ios/50/000000/shopping-cart-loaded.png"
+const filledCart = "https://img.icons8.com/ios-filled/50/000000/shopping-cart-loaded.png"
 
 const signUpForm = document.querySelector(".container")
 const addUserForm = document.querySelector(".signup-form")
@@ -70,7 +72,8 @@ function renderLoggedInUser(loggedIn){
     loggedIn.carts[loggedIn.carts.length - 1].id
     welcome.append(div)
     loggedIn.carts[0].plants.forEach(plant => {
-        cartContainer.innerHTML += `<p>${plant.name} - $${plant.price}`
+        cartContainer.innerHTML += `<p>${plant.name} - $${plant.price}</p>
+        <button class="remove" onClick=removeFromCart(event) data-plant-id="${plant.id}"> X </button>`
     })
     cartContainer.innerHTML = `<p> Total Price: $${loggedIn.carts.total}</p>`
     fetchPlants() 
@@ -98,6 +101,13 @@ function renderPlants(plants){
 }
 
 function addToCart(event){
+    let id = localStorage.loggedIn
+    fetch(USERS_URL + "/" + id)
+    .then(res => res.json())
+    .then(function(object){
+        loggedIn = object
+    })
+    console.log(loggedIn)
     let cartId = loggedIn.carts[loggedIn.carts.length - 1].id
     let plantCard = event.target.parentElement
     let plantName = plantCard.querySelector('h2').innerText
