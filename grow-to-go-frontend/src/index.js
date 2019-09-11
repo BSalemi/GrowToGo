@@ -22,6 +22,12 @@ const cartContainer = document.querySelector(".cart-container")
 // console.log(inputFields)
 // console.log(signUpBtn)
 
+function hideSignUpBtn(){
+    signUpBtn.style.display = 'none',
+    signUpBtnPhrase.style.display = 'none',
+    signUpForm.style.display = 'none'
+}
+
 signUpBtn.addEventListener('click', () => {
     signUpBtn.style.display = 'none',
     signUpBtnPhrase.style.display = 'none',
@@ -49,20 +55,26 @@ addUserForm.addEventListener('submit', function(e){
     .then(res => res.json())
     .then(function(object){
         loggedIn = object
-        // console.log(loggedIn, "loggedIn")
-        if(loggedIn){
-            let div = document.createElement('div')
-            let welcome = document.querySelector('#welcome')
-            div.innerText = `Welcome ${loggedIn.name}`
-            loggedIn.carts[loggedIn.carts.length - 1].id
-            welcome.append(div)
-            signUpBtn.style.display = 'none'
-            signUpBtnPhrase.style.display = 'none'
-            signUpForm.style.display = 'none'
-            fetchPlants()   
+        localStorage.loggedIn = object.id
+        hideSignUpBtn()
+        renderLoggedInUser(loggedIn)
         }
-    })
+    )
 })
+
+function renderLoggedInUser(loggedIn){
+    console.log(loggedIn)
+    let div = document.createElement('div')
+    let welcome = document.querySelector('#welcome')
+    div.innerText = `Welcome ${loggedIn.name}`
+    loggedIn.carts[loggedIn.carts.length - 1].id
+    welcome.append(div)
+    loggedIn.carts[0].plants.forEach(plant => {
+        cartContainer.innerHTML += `<p>${plant.name} - $${plant.price}`
+    })
+    cartContainer.innerHTML = `<p> Total Price: $${loggedIn.carts.total}</p>`
+    fetchPlants() 
+}
 
 function fetchPlants(){
     fetch(PLANTS_URL)
@@ -86,13 +98,10 @@ function renderPlants(plants){
 }
 
 function addToCart(event){
-    // console.log(event)
     let cartId = loggedIn.carts[loggedIn.carts.length - 1].id
     let plantCard = event.target.parentElement
-    let plantPrice = Array.prototype.slice.call(plantCard.querySelectorAll('p'))[0].innerText.split("$")[1]
     let plantName = plantCard.querySelector('h2').innerText
     console.log(plantName)
-    // console.log(cartId)
     fetch(CART_PLANTS_URL, {
         method: "POST",
         headers: {
@@ -105,13 +114,27 @@ function addToCart(event){
         }),
     })
     .then(res => res.json())
-    .then(function(object){
-        
+    .then(res => {
+        loggedIn = res
+        renderLoggedInUser(loggedIn)
     })
 }
-
-// function checkForUser(){
-//     if(localStorage.loggedInUser){
-//         fetchPlants()
-//     }
+        //fetch user again and reset loggedIn user varaible to the updated object
+        //write a function that changes the dom to reflect the logged in object
+        //cartDiv = document.querySelector .yadayaaaaada
+        ///cartDiv.innerHTML = ${loggedIn.carts.first.total}
+//     )
+//     })
 // }
+function checkForUser(){
+    if(localStorage.loggedIn){
+        let id = localStorage.loggedIn
+        fetch(USERS_URL + "/" + id)
+        .then(res => res.json())
+        .then(res => renderLoggedInUser(res))
+        hideSignUpBtn();
+    }
+}
+
+checkForUser()
+
