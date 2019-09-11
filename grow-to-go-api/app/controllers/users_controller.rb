@@ -1,26 +1,24 @@
 class UsersController < ApplicationController
 
-    def index 
-        users = User.all 
-        render json: users, except: [:created_at, :updated_at]
-    end 
 
     def show 
         user = User.find_by(id: params[:id])
         if user 
-            render json: user(:include => {
-                cart: {except: [:created_at, :updated_at]}
-            }, except: [:created_at, :updated_at])
+            render json: user, :include => {
+                carts: {except: [:created_at, :updated_at], methods: :total, include: :plants}
+            }, except: [:created_at, :updated_at]
         else 
             render json: {message: "User not found."}
         end 
     end 
 
     def create 
-        user = User.create(user_params)
-        cart = Cart.create(user_id: user.id)
+        user = User.find_or_create_by(email: params[:email])
+        if user.carts.length == 0    
+            cart = Cart.create(user_id: user.id)
+        end 
         render json: user.to_json(:include => {
-            :carts => {:except => [:created_at, :updated_at]},
+            :carts => {:except => [:created_at, :updated_at], methods: :total, include: :plants},
         },  :except => [:created_at, :updated_at])
     end 
 
