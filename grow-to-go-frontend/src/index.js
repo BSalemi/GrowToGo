@@ -59,12 +59,12 @@ addUserForm.addEventListener('submit', function(e){
         loggedIn = object
         localStorage.loggedIn = object.id
         hideSignUpBtn()
-        renderLoggedInUser(loggedIn)
+        renderLoggedInUser()
         }
     )
 })
 
-function renderLoggedInUser(loggedIn){
+function renderLoggedInUser(){
     console.log(loggedIn)
     let div = document.createElement('div')
     let welcome = document.querySelector('#welcome')
@@ -72,10 +72,12 @@ function renderLoggedInUser(loggedIn){
     loggedIn.carts[loggedIn.carts.length - 1].id
     welcome.append(div)
     loggedIn.carts[0].plants.forEach(plant => {
+        console.log(loggedIn.carts[0], "loggedIn.carts[0]")
+        console.log(plant.name)
         cartContainer.innerHTML += `<p>${plant.name} - $${plant.price}</p>
         <button class="remove" onClick=removeFromCart(event) data-plant-id="${plant.id}"> X </button>`
     })
-    cartContainer.innerHTML = `<p> Total Price: $${loggedIn.carts.total}</p>`
+    cartContainer.innerHTML += `<p> Total Price: $${loggedIn.carts[0].total}</p>`
     fetchPlants() 
 }
 
@@ -101,13 +103,7 @@ function renderPlants(plants){
 }
 
 function addToCart(event){
-    let id = localStorage.loggedIn
-    fetch(USERS_URL + "/" + id)
-    .then(res => res.json())
-    .then(function(object){
-        loggedIn = object
-    })
-    console.log(loggedIn)
+   
     let cartId = loggedIn.carts[loggedIn.carts.length - 1].id
     let plantCard = event.target.parentElement
     let plantName = plantCard.querySelector('h2').innerText
@@ -126,7 +122,7 @@ function addToCart(event){
     .then(res => res.json())
     .then(res => {
         loggedIn = res
-        renderLoggedInUser(loggedIn)
+        renderLoggedInUser()
     })
 }
         //fetch user again and reset loggedIn user varaible to the updated object
@@ -141,7 +137,10 @@ function checkForUser(){
         let id = localStorage.loggedIn
         fetch(USERS_URL + "/" + id)
         .then(res => res.json())
-        .then(res => renderLoggedInUser(res))
+        .then(function(res){
+            loggedIn = res 
+            renderLoggedInUser()
+        })
         hideSignUpBtn();
     }
 }

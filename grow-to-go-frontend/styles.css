@@ -28,6 +28,18 @@ body {
     font-size: 18px;
     justify-self: center;
   }
+
+  .remove {
+    position: relative;
+    background-color: red;
+    border: none;
+    border-radius: 3px;
+    height: 1rem;
+    width: max-content;
+    color: black;
+    font-size: 6px;
+    justify-self: center;
+  }
   
   .container {
     padding: 1rem;
