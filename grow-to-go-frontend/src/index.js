@@ -86,9 +86,13 @@ function renderPlants(plants){
 }
 
 function addToCart(event){
-    console.log(event)
+    // console.log(event)
     let cartId = loggedIn.carts[loggedIn.carts.length - 1].id
-    console.log(cartId)
+    let plantCard = event.target.parentElement
+    let plantPrice = Array.prototype.slice.call(plantCard.querySelectorAll('p'))[0].innerText.split("$")[1]
+    let plantName = plantCard.querySelector('h2').innerText
+    console.log(plantName)
+    // console.log(cartId)
     fetch(CART_PLANTS_URL, {
         method: "POST",
         headers: {
@@ -101,7 +105,9 @@ function addToCart(event){
         }),
     })
     .then(res => res.json())
-    .then(console.log)
+    .then(function(object){
+        
+    })
 }
 
 // function checkForUser(){
