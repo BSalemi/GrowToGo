@@ -71,13 +71,15 @@ function renderLoggedInUser(){
     div.innerText = `Welcome ${loggedIn.name}`
     loggedIn.carts[loggedIn.carts.length - 1].id
     welcome.append(div)
-    loggedIn.carts[0].plants.forEach(plant => {
-        console.log(loggedIn.carts[0], "loggedIn.carts[0]")
+    cartContainer.innerHTML = " "
+    loggedIn.carts[loggedIn.carts.length - 1].plants.forEach(plant => {
+       
         console.log(plant.name)
+        
         cartContainer.innerHTML += `<p>${plant.name} - $${plant.price}</p>
         <button class="remove" onClick=removeFromCart(event) data-plant-id="${plant.id}"> X </button>`
     })
-    cartContainer.innerHTML += `<p> Total Price: $${loggedIn.carts[0].total}</p>`
+    cartContainer.innerHTML += `<p> Total Price: $${loggedIn.carts[loggedIn.carts.length - 1].total}</p>`
     fetchPlants() 
 }
 
