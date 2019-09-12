@@ -31,9 +31,8 @@ body {
 
   .remove {
     position: relative;
-    background-color: red;
+    background-color:grey;
     border: none;
-    border-radius: 3px;
     height: 1rem;
     width: max-content;
     color: black;
@@ -79,4 +78,13 @@ body {
     position:absolute;
     top:10px;
     right: 25px;
+    overflow: scroll;
+    height: 400px
+  }
+
+  #welcome{
+    position:absolute;
+    top:200px;
+    left: 70px;
+    font-size: 16px;
   }

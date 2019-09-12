@@ -65,19 +65,17 @@ addUserForm.addEventListener('submit', function(e){
 })
 
 function renderLoggedInUser(){
-    console.log(loggedIn)
     let div = document.createElement('div')
     let welcome = document.querySelector('#welcome')
     div.innerText = `Welcome ${loggedIn.name}`
-    loggedIn.carts[loggedIn.carts.length - 1].id
+    console.log(loggedIn, "loggedIn")
+    // loggedIn.carts[loggedIn.carts.length - 1].id
     welcome.append(div)
     cartContainer.innerHTML = " "
-    loggedIn.carts[loggedIn.carts.length - 1].plants.forEach(plant => {
-       
-        console.log(plant.name)
-        
-        cartContainer.innerHTML += `<p>${plant.name} - $${plant.price}</p>
-        <button class="remove" onClick=removeFromCart(event) data-plant-id="${plant.id}"> X </button>`
+    loggedIn.carts[loggedIn.carts.length - 1].cart_plants.forEach(cart_plant => {
+        console.log(cart_plant.plant.name, "cartplant name")
+        cartContainer.innerHTML += `<p>${cart_plant.plant.name} - $${cart_plant.plant.price}</p>
+        <button class="remove" onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}"> X </button>`
     })
     cartContainer.innerHTML += `<p> Total Price: $${loggedIn.carts[loggedIn.carts.length - 1].total}</p>`
     fetchPlants() 
@@ -127,13 +125,12 @@ function addToCart(event){
         renderLoggedInUser()
     })
 }
-        //fetch user again and reset loggedIn user varaible to the updated object
-        //write a function that changes the dom to reflect the logged in object
-        //cartDiv = document.querySelector .yadayaaaaada
-        ///cartDiv.innerHTML = ${loggedIn.carts.first.total}
-//     )
-//     })
-// }
+    
+function removeFromCart(event){
+    let cartId = loggedIn.carts[loggedIn.carts.length - 1].id
+}
+
+
 function checkForUser(){
     if(localStorage.loggedIn){
         let id = localStorage.loggedIn
