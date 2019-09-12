@@ -16,7 +16,10 @@ const signUpBtn = document.querySelector("#signup-btn")
 const signUpBtnPhrase = document.querySelector(".sign-up-btn")
 const mainContainer = document.querySelector("main")
 const cartContainer = document.querySelector(".cart-container")
+const cartBtn = document.querySelector(".cart-button")
 
+
+// console.log(cartBtn)
 // console.log(cartContainer)
 // console.log(mainContainer)
 // console.log(signUpForm)
@@ -64,18 +67,26 @@ addUserForm.addEventListener('submit', function(e){
     )
 })
 
+cartBtn.addEventListener('mouseover', () =>{
+    cartContainer.style.display = "block"
+})
+
+cartBtn.addEventListener('mouseout', () => {
+    cartContainer.style.display = "none"
+    
+})
+
+
 function renderLoggedInUser(){
-    let div = document.createElement('div')
     let welcome = document.querySelector('#welcome')
-    div.innerText = `Welcome ${loggedIn.name}`
-    console.log(loggedIn, "loggedIn")
-    // loggedIn.carts[loggedIn.carts.length - 1].id
-    welcome.append(div)
+    welcome.innertText = " "
+    welcome.innerText = `Welcome ${loggedIn.name}`
+    // welcome.append(div)
     cartContainer.innerHTML = " "
+    console.log(loggedIn, "loggedIn")
     loggedIn.carts[loggedIn.carts.length - 1].cart_plants.forEach(cart_plant => {
-        console.log(cart_plant.plant.name, "cartplant name")
-        cartContainer.innerHTML += `<p>${cart_plant.plant.name} - $${cart_plant.plant.price}</p>
-        <button class="remove" onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}"> X </button>`
+        cartContainer.innerHTML += `<div id="cartplant-${cart_plant.id}"><p>${cart_plant.plant.name} - $${cart_plant.plant.price}</p>
+        <button class="remove" onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}"> X </button></div>`
     })
     cartContainer.innerHTML += `<p> Total Price: $${loggedIn.carts[loggedIn.carts.length - 1].total}</p>`
     fetchPlants() 
@@ -127,7 +138,22 @@ function addToCart(event){
 }
     
 function removeFromCart(event){
-    let cartId = loggedIn.carts[loggedIn.carts.length - 1].id
+    let cartPlant = event.target.dataset.cartPlantId
+    fetch(CART_PLANTS_URL + "/" + cartPlant, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            id: cartPlant,
+        }),
+    })
+    .then(res => res.json())
+    .then(res => {
+        loggedIn = res
+        renderLoggedInUser()
+    })
 }
 
 

@@ -61,7 +61,7 @@ body {
   .plant-avatar{
     width: 324px; 
     height: 393px;
-    border: 5px solid brown
+    border: 5px ridge brown;
   }
   
   .slogan {
@@ -76,10 +76,11 @@ body {
     border: 5px solid brown;
     background-color: white;
     position:absolute;
-    top:10px;
+    top:70px;
     right: 25px;
     overflow: scroll;
-    height: 400px
+    height: 400px;
+    display: none
   }
 
   #welcome{
@@ -87,4 +88,11 @@ body {
     top:200px;
     left: 70px;
     font-size: 16px;
+  }
+
+  #cart-btn{
+    position:absolute;
+    top:70px;
+    right: 50px;
+    background-color: blanchedalmond
   }
