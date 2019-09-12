@@ -6,8 +6,7 @@ const USERS_URL = `${BASE_URL}/users`
 
 let loggedIn = null
 let signedUp = false 
-const emptyCart =  "https://img.icons8.com/ios/50/000000/shopping-cart-loaded.png"
-const filledCart = "https://img.icons8.com/ios-filled/50/000000/shopping-cart-loaded.png"
+
 
 const signUpForm = document.querySelector(".container")
 const addUserForm = document.querySelector(".signup-form")
@@ -17,6 +16,7 @@ const signUpBtnPhrase = document.querySelector(".sign-up-btn")
 const mainContainer = document.querySelector("main")
 const cartContainer = document.querySelector(".cart-container")
 const cartBtn = document.querySelector(".cart-button")
+const logoutBtn = document.querySelector(".logout-btn")
 
 
 // console.log(cartBtn)
@@ -76,6 +76,12 @@ cartBtn.addEventListener('mouseout', () => {
     
 })
 
+logoutBtn.addEventListener('click', () => {
+    console.log('click')
+    localStorage.clear(loggedIn)
+    window.location.reload()
+})
+
 
 function renderLoggedInUser(){
     let welcome = document.querySelector('#welcome')
@@ -83,7 +89,7 @@ function renderLoggedInUser(){
     welcome.innerText = `Welcome ${loggedIn.name}!`
     cartContainer.innerHTML = " "
     loggedIn.carts[loggedIn.carts.length - 1].cart_plants.forEach(cart_plant => {
-        cartContainer.innerHTML += `<div id="cartplant-${cart_plant.id}"><p> <button class="remove" onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}"> X </button>
+        cartContainer.innerHTML += `<div id="cartplant-${cart_plant.id}"><p> <button class="remove" onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}"><img src="http://icons.iconarchive.com/icons/icons8/windows-8/16/Editing-Delete-icon.png"> </button>
         <strong>${cart_plant.plant.name}</strong> - $${cart_plant.plant.price}
        </p></div>`
     })
@@ -121,6 +127,7 @@ function fetchPlants(){
 }
 
 function renderPlants(plants){
+    mainContainer.innerHTML = ""
     plants.forEach(plant => {
         mainContainer.innerHTML += `<div class="card">
         <img src=${plant.image} class="plant-avatar" />
@@ -173,6 +180,7 @@ function removeFromCart(event){
     .then(res => res.json())
     .then(res => {
         loggedIn = res
+        console.log(loggedIn,"after remove")
         renderLoggedInUser()
     })
 }
