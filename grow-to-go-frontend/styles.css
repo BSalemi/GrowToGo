@@ -44,7 +44,7 @@ body {
     padding: 1rem;
     width: 225px;
     height: 400px;
-    display: none;
+    display: block;
     opacity: .8;
     margin: auto
   }

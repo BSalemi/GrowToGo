@@ -92,6 +92,28 @@ function renderLoggedInUser(){
     fetchPlants() 
 }
 
+function checkout(event){
+    if(loggedIn.carts[loggedIn.carts.length - 1].total > 0){
+    let cartId = event.target.dataset.cartId
+    // console.log(cartId)
+    fetch(BASE_URL + "/checkout", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            id: cartId
+        })
+    })
+    .then(res => res.json())
+    .then(res => {
+        console.log(res, "response")
+        loggedIn = res
+        renderLoggedInUser()
+    })
+}} 
+
 function fetchPlants(){
     fetch(PLANTS_URL)
     .then(res => res.json())
@@ -157,15 +179,19 @@ function removeFromCart(event){
 
 
 function checkForUser(){
+    console.log(localStorage.loggedIn)
     if(localStorage.loggedIn){
         let id = localStorage.loggedIn
         fetch(USERS_URL + "/" + id)
         .then(res => res.json())
         .then(function(res){
             loggedIn = res 
+            console.log(loggedIn, "loggedIn")
             renderLoggedInUser()
         })
         hideSignUpBtn();
+    } else {
+        signUpBtn.style.display = "block"
     }
 }
 
