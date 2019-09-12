@@ -31,10 +31,10 @@ body {
 
   .remove {
     position: relative;
-    background-color:grey;
-    border: none;
-    height: 1rem;
-    width: max-content;
+    background-color:lightgray;
+    border: 1px solid black;
+    height: auto;
+    width: auto;
     color: black;
     font-size: 6px;
     justify-self: center;
@@ -73,21 +73,24 @@ body {
   }
 
   .cart-container {
-    border: 5px solid brown;
+    border: 5px ridge brown;
     background-color: white;
     position:absolute;
     top:70px;
     right: 25px;
     overflow: scroll;
-    height: 400px;
-    display: none
+    height: auto;
+    max-height: 30em;
+    display: none;
+    justify-content: center
   }
 
   #welcome{
     position:absolute;
     top:200px;
     left: 70px;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold
   }
 
   #cart-btn{
@@ -95,4 +98,14 @@ body {
     top:70px;
     right: 50px;
     background-color: blanchedalmond
+  }
+
+  .checkout {
+    position: relative;
+    background-color:lightgray;
+    border: ridge black;
+    height: auto;
+    width: max-content;
+    color: black;
+    font-size: 15px;
   }

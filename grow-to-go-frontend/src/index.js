@@ -80,15 +80,15 @@ cartBtn.addEventListener('mouseout', () => {
 function renderLoggedInUser(){
     let welcome = document.querySelector('#welcome')
     welcome.innertText = " "
-    welcome.innerText = `Welcome ${loggedIn.name}`
-    // welcome.append(div)
+    welcome.innerText = `Welcome ${loggedIn.name}!`
     cartContainer.innerHTML = " "
-    console.log(loggedIn, "loggedIn")
     loggedIn.carts[loggedIn.carts.length - 1].cart_plants.forEach(cart_plant => {
-        cartContainer.innerHTML += `<div id="cartplant-${cart_plant.id}"><p>${cart_plant.plant.name} - $${cart_plant.plant.price}</p>
-        <button class="remove" onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}"> X </button></div>`
+        cartContainer.innerHTML += `<div id="cartplant-${cart_plant.id}"><p> <button class="remove" onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}"> X </button>
+        <strong>${cart_plant.plant.name}</strong> - $${cart_plant.plant.price}
+       </p></div>`
     })
-    cartContainer.innerHTML += `<p> Total Price: $${loggedIn.carts[loggedIn.carts.length - 1].total}</p>`
+    cartContainer.innerHTML += `<p> <strong>Total Price:</strong> $${loggedIn.carts[loggedIn.carts.length - 1].total}
+    <button class="checkout" onClick=checkout(event) data-cart-id="${loggedIn.carts[loggedIn.carts.length - 1].id}"> Checkout </button></p>`
     fetchPlants() 
 }
 
@@ -118,7 +118,6 @@ function addToCart(event){
     let cartId = loggedIn.carts[loggedIn.carts.length - 1].id
     let plantCard = event.target.parentElement
     let plantName = plantCard.querySelector('h2').innerText
-    console.log(plantName)
     fetch(CART_PLANTS_URL, {
         method: "POST",
         headers: {
