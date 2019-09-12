@@ -2,6 +2,7 @@ class CartPlantsController < ApplicationController
 
     def index
         cart_plants = CartPlant.all 
+        
         render json: cart_plants, except: [:created_at, :updated_at]
     end 
 
@@ -9,9 +10,16 @@ class CartPlantsController < ApplicationController
         cart_plant = CartPlant.create(cart_plant_params)
         cart = Cart.find(cart_plant_params[:cart_id])
         user = cart.user
+        
         render json: user, :include => {
-            carts: {except: [:created_at, :updated_at], methods: :total, include: :plants}
-        }, except: [:created_at, :updated_at]
+            carts: {
+                except: [:created_at, :updated_at], 
+                methods: :total, 
+                include: {
+                    cart_plants:{ 
+                        include: :plant
+                    }},
+            }}, except: [:created_at, :updated_at]
     end 
    
 
