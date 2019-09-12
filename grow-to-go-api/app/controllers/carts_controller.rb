@@ -20,4 +20,28 @@ class CartsController < ApplicationController
             render json: {message: "Cart not found."}
         end 
     end 
+
+    def checkout
+        cart = Cart.find(params[:id])
+        cart.checkout = true 
+        cart.save
+        user = cart.user 
+        
+        new_cart = Cart.create(user_id: user.id)
+        
+        render json: user, :include => {
+            carts: {
+                except: [:created_at, :updated_at], 
+                methods: :total, 
+                include: {
+                    cart_plants:{ 
+                        include: :plant
+                    }},
+            },
+        }, except: [:created_at, :updated_at]
+    end 
+
+    private 
+
+   
 end
