@@ -22,6 +22,21 @@ class CartPlantsController < ApplicationController
             }}, except: [:created_at, :updated_at]
     end 
    
+    def destroy 
+        cart_plant = CartPlant.find(params[:id])
+        user = cart_plant.cart.user
+        cart_plant.destroy
+        
+        render json: user, :include => {
+            carts: {
+                except: [:created_at, :updated_at], 
+                methods: :total, 
+                include: {
+                    cart_plants:{ 
+                        include: :plant
+                    }},
+            }}, except: [:created_at, :updated_at]
+    end 
 
     private
     
