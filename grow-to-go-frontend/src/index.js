@@ -11,12 +11,14 @@ let signedUp = false
 const signUpForm = document.querySelector(".container")
 const addUserForm = document.querySelector(".signup-form")
 const inputFields = document.querySelectorAll(".input-text")
-const signUpBtn = document.querySelector("#signup-btn")
+// const signUpBtn = document.querySelector("#signup-btn")
 const signUpBtnPhrase = document.querySelector(".sign-up-btn")
 const mainContainer = document.querySelector("main")
 const cartContainer = document.querySelector(".cart-container")
 const cartBtn = document.querySelector(".cart-button")
 const logoutBtn = document.querySelector(".logout-btn")
+const sortPriceBtn = document.querySelector(".sort-price-btn")
+const sizeFilter = document.getElementById('size-dropdown')
 
 
 // console.log(cartBtn)
@@ -28,21 +30,21 @@ const logoutBtn = document.querySelector(".logout-btn")
 // console.log(signUpBtn)
 
 function hideSignUpBtn(){
-    signUpBtn.style.display = 'none',
+    // signUpBtn.style.display = 'none',
     signUpBtnPhrase.style.display = 'none',
     signUpForm.style.display = 'none'
 }
 
-signUpBtn.addEventListener('click', () => {
-    signUpBtn.style.display = 'none',
-    signUpBtnPhrase.style.display = 'none',
-    signedUp = !signedUp
-    if (!signedUp) {
-        signUpForm.style.display = "none"
-    } else {
-        signUpForm.style.display = "block"
-    }
-})
+// signUpBtn.addEventListener('click', () => {
+//     signUpBtn.style.display = 'none',
+//     signUpBtnPhrase.style.display = 'none',
+//     signedUp = !signedUp
+//     if (!signedUp) {
+//         signUpForm.style.display = "none"
+//     } else {
+//         signUpForm.style.display = "block"
+//     }
+// })
 
 addUserForm.addEventListener('submit', function(e){
     e.preventDefault()
@@ -77,11 +79,16 @@ cartBtn.addEventListener('mouseout', () => {
 })
 
 logoutBtn.addEventListener('click', () => {
-    console.log('click')
     localStorage.clear(loggedIn)
     window.location.reload()
 })
 
+sizeFilter.addEventListener('change', function(e){
+    console.log(e.target.value)
+    fetch(BASE_URL + `/find_${e.target.value}`)
+    .then(res => res.json())
+    .then(plants => renderPlants(plants))
+})
 
 function renderLoggedInUser(){
     let welcome = document.querySelector('#welcome')
@@ -140,6 +147,16 @@ function renderPlants(plants){
         </br>
       </div>`
     })
+}
+
+sortPriceBtn.addEventListener('click', () => {
+    sortedPrice()
+})
+
+function sortedPrice(){
+    fetch(BASE_URL + "/sorted_price")
+    .then(res => res.json())
+    .then(plants => renderPlants(plants))
 }
 
 function addToCart(event){
