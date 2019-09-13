@@ -15,28 +15,43 @@
         </p>
         
         <div class="sort-menus">
-        <label for="select-price"><strong>Sort by Price:</strong></label>
-        <select id="price-dropdown" name="sort-price">
-            <option value="sort_price_asc">Low to High</option>
-            <option value="sort_price_desc">High to Low</option>
-        </select>
-        
-        <label for="select-size"><strong>Sort by Size:</strong></label>
-        <select id="size-dropdown" name="select-size">
-          <option value="find_mini">Mini</option>
-          <option value="find_small">Small</option>
-          <option value="find_medium">Medium</option>
-          <option value="find_large">Large</option>
-          <option value="find_xlarge">X-Large</option>
-        </select>
+            <div class="sort-menu-children">
+                <label for="select-price"><strong>Sort by Price:</strong></label>
+                <select id="price-dropdown" name="sort-price">
+                    <option value="sort_price_asc">Low to High</option>
+                    <option value="sort_price_desc">High to Low</option>
+                </select>
+            </div>
+            <div class="sort-menu-children">
+                <label for="select-size"><strong>Sort by Size:</strong></label>
+                <select id="size-dropdown" name="select-size">
+                    <option value="find_mini">Mini</option>
+                    <option value="find_small">Small</option>
+                    <option value="find_medium">Medium</option>
+                    <option value="find_large">Large</option>
+                    <option value="find_xlarge">X-Large</option>
+                </select>
+            </div>
 
-        <label for="select-exp-level"><strong>Sort by Experience:</strong></label>
-        <select id="exp-level-dropdown" name="select-exp-level">
-            <option value="find_beginner">Beginner</option>
-            <option value="find_intermediate">Intermediate</option>
-            <option value="find_advanced">Advanced</option>
-        </select>
+            <div class="sort-menu-children">
+                <label for="select-exp-level"><strong>Sort by Experience:</strong></label>
+                <select id="exp-level-dropdown" name="select-exp-level">
+                    <option value="find_beginner">Beginner</option>
+                    <option value="find_intermediate">Intermediate</option>
+                    <option value="find_advanced">Advanced</option>
+                </select>
+            </div>
 
+            <div class="sort-menu-children">
+                <label for="select-light-required"><strong>Sort by Light Requirement:</strong></label>
+                <select id="light-required-dropdown" name="select-light-required">
+                    <option value="find_low">Low Light</option>
+                    <option value="find_medium_indirect">Medium Indirect</option>
+                    <option value="find_bright_indirect">Bright Indirect</option>
+                    <option value="find_bright_direct">Bright Direct</option>
+                    <option value="find_full_sun">Full Sun</option>
+                </select>
+        </div>
         </div>
         <main>
 

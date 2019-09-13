@@ -97,7 +97,7 @@ function renderLoggedInUser(){
     welcome.innerText = `Welcome ${loggedIn.name}!`
     cartContainer.innerHTML = " "
     loggedIn.carts[loggedIn.carts.length - 1].cart_plants.forEach(cart_plant => {
-        cartContainer.innerHTML += `<div id="cartplant-${cart_plant.id}"><p> <button class="remove" onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}"><img src="http://icons.iconarchive.com/icons/icons8/windows-8/16/Editing-Delete-icon.png"> </button>
+        cartContainer.innerHTML += `<div id="cartplant-${cart_plant.id}"><p> <img src="http://icons.iconarchive.com/icons/icons8/windows-8/16/Editing-Delete-icon.png" onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}">
         <strong>${cart_plant.plant.name}</strong> - $${cart_plant.plant.price}
        </p></div>`
     })
