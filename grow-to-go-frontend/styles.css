@@ -114,3 +114,8 @@ body {
     height: 50px;
     background-color: blanchedalmond;
   }
+
+  .sort-menus{
+    display: flex;
+    justify-content: space-evenly
+  }

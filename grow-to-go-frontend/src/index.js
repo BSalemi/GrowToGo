@@ -17,8 +17,7 @@ const mainContainer = document.querySelector("main")
 const cartContainer = document.querySelector(".cart-container")
 const cartBtn = document.querySelector(".cart-button")
 const logoutBtn = document.querySelector(".logout-btn")
-const sortPriceBtn = document.querySelector(".sort-price-btn")
-const sizeFilter = document.getElementById('size-dropdown')
+const sortOptions = document.querySelector('.sort-menus')
 
 
 // console.log(cartBtn)
@@ -83,12 +82,14 @@ logoutBtn.addEventListener('click', () => {
     window.location.reload()
 })
 
-sizeFilter.addEventListener('change', function(e){
+
+sortOptions.addEventListener('change', function(e){
     console.log(e.target.value)
-    fetch(BASE_URL + `/find_${e.target.value}`)
+    fetch(BASE_URL + `/${e.target.value}`)
     .then(res => res.json())
     .then(plants => renderPlants(plants))
 })
+
 
 function renderLoggedInUser(){
     let welcome = document.querySelector('#welcome')
@@ -149,15 +150,6 @@ function renderPlants(plants){
     })
 }
 
-sortPriceBtn.addEventListener('click', () => {
-    sortedPrice()
-})
-
-function sortedPrice(){
-    fetch(BASE_URL + "/sorted_price")
-    .then(res => res.json())
-    .then(plants => renderPlants(plants))
-}
 
 function addToCart(event){
    

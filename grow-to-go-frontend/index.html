@@ -14,18 +14,30 @@
                 <img src="https://fontmeme.com/permalink/190910/e82e091f0a56a273adfbca896400ea3b.png" alt="miralight-font" border="0">
         </p>
         
-        <div class="sort-price-btn">
-            <button id="sort-price">Sort by Price</button>
-        </div>
-        <label for="select-size">Sort by Size:</label>
-        <select id="size-dropdown" name="select-size">
-          <option value="mini">Mini</option>
-          <option value="small">Small</option>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
-          <option value="xlarge">X-Large</option>
+        <div class="sort-menus">
+        <label for="select-price"><strong>Sort by Price:</strong></label>
+        <select id="price-dropdown" name="sort-price">
+            <option value="sort_price_asc">Low to High</option>
+            <option value="sort_price_desc">High to Low</option>
         </select>
         
+        <label for="select-size"><strong>Sort by Size:</strong></label>
+        <select id="size-dropdown" name="select-size">
+          <option value="find_mini">Mini</option>
+          <option value="find_small">Small</option>
+          <option value="find_medium">Medium</option>
+          <option value="find_large">Large</option>
+          <option value="find_xlarge">X-Large</option>
+        </select>
+
+        <label for="select-exp-level"><strong>Sort by Experience:</strong></label>
+        <select id="exp-level-dropdown" name="select-exp-level">
+            <option value="find_beginner">Beginner</option>
+            <option value="find_intermediate">Intermediate</option>
+            <option value="find_advanced">Advanced</option>
+        </select>
+
+        </div>
         <main>
 
         </main>
