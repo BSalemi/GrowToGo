@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# \
 Plant.destroy_all
 
 zz_plant = Plant.create(name: "ZZ Plant", species: "Zamioculcas Zamiifolia", price: 110, exp_level: "Beginner", size: "Large", light_required: "Low to Bright Indirect", image: "https://bloomscape.com/wp-content/uploads/2019/03/bloomscape_product-zz-plant-slate-1-324x393.jpg")
@@ -33,10 +27,31 @@ alocasia_polly = Plant.create(name: "Alocasia Polly", species: "Alocasia 'Polly'
 
 dracaena = Plant.create(name: "Dracaena Colorama", species: "Dracaena Marginata 'Colorama'", price: 110, exp_level: "Intermediate", size: "Large", light_required: "Bright Indirect", image: "https://bloomscape.com/wp-content/uploads/2019/03/bloomscape_product-dracaena-colorama-charcoal-1-324x393.jpg")
 
-aloe = Plant.create(name: "Hedgehog Aloe", species: "Aloe Humilis 'Hedgehog'", price: 35, exp_level: "Beginner", size: "Small", light_required: "Bright Indirect to Full Sun", image: "https://bloomscape.com/wp-content/uploads/2019/04/bloomscape_product-hedgehog-aloe-clay-324x393.jpg")
+hedgeho_aloe = Plant.create(name: "Hedgehog Aloe", species: "Aloe Humilis 'Hedgehog'", price: 35, exp_level: "Beginner", size: "Small", light_required: "Bright Indirect to Full Sun", image: "https://bloomscape.com/wp-content/uploads/2019/04/bloomscape_product-hedgehog-aloe-clay-324x393.jpg")
 
 bird_nest = Plant.create(name: "Bird's Nest Fern", species: "Asplenium Nidus", price: 35, exp_level: "Intermediate", size: "Small", light_required: "Low to Bright Indirect", image: "https://bloomscape.com/wp-content/uploads/2019/04/bloomscape-product-birds-nest-fern-stone-324x393.jpg")
 
 ponytail = Plant.create(name: "Ponytail Palm", species: "Beaucarnea Recurvata", price: 65, exp_level: "Beginner", size: "Medium", light_required: "Bright Indirect to Bright Direct", image: "https://bloomscape.com/wp-content/uploads/2019/03/bloomscape_product-ponytail-palm-slate-324x393.jpg")
 
 peperomia = Plant.create(name: "Peperomia Ginny", species: "Peperomia Clusiifolia 'Ginny'", price: 35, exp_level: "Beginner", size: "Small", light_required: "Low to Bright Indirect", image: "https://bloomscape.com/wp-content/uploads/2019/03/bloomscape-product-peperomia-ginny-charcoal-324x393.jpg")
+
+aloe = Plant.create(name: "Aloe Vera", species: "Aloe Vera", price: 35, exp_level: "Beginner", size: "Mini", light_required: "Bright Indirect to Full Sun", image: "http://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_aloe-vera_prospect_blush_4_1500x.progressive.jpg?v=1567675325")
+
+pilea = Plant.create(name: "Pilea Peperomioides", species: "Pilea Peperomioides", price: 40, exp_level: "Beginner", size: "Mini", light_required: "Bright Indirect to Bright Direct", image: "http://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_Grant_PaleRed_Pilea-4_8d08356e-43dd-44dc-9044-997e6751b136_1500x.progressive.jpg?v=1564157115")
+
+maranta = Plant.create(name: "Maranta", species: "Maranta Leuconeura", price: 45, exp_level: "Intermediate", size: "Small", light_required: "Medium to Bright Indirect", image: "http://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_maranta_hyde_blush_5_1500x.progressive.jpg?v=1566853958")
+
+aglaonema = Plant.create(name: "Aglaonema Indo Princess", species: "Aglaonema Hybrida 'Indo Princess'", price: 110, exp_level: "Beginner", size: "Large", light_required: "Low to Bright Indirect", image: "https://bloomscape.com/wp-content/uploads/2019/08/bloomscape_product_indo-princess-aglaonema-indigo-324x395.jpg")
+
+xanadu = Plant.create(name: "Philodendron Xanadu", species: "Philodendron X 'Xanadu'", price: 110, exp_level: "Beginner", size: "Large", light_required: "Medium to Bright Indirect", image: "https://bloomscape.com/wp-content/uploads/2019/04/bloomscape_product-xanadu-stone-1-324x393.jpg")
+
+marginata = Plant.create(name: "Dracaena Marginata Open Weave", species: "Dracaena Reflexa Var Angustifolia", price: 165, exp_level: "Beginner", size: "X-Large", light_required: "Low to Bright Indirect", image: "https://bloomscape.com/wp-content/uploads/2019/03/bloomscape_product-dracaena-open-weave-clay-324x393.jpg")
+
+emerald = Plant.create(name: "Emerald Ripple Cactus", species: "Euphorbia Eritrea Emerald Ripples", price: 40, exp_level: "Beginner", size: "Medium", light_required: "Bright Indirect to Bright Direct", image: "https://bloomscape.com/wp-content/uploads/2019/04/bloomscape_product-emerald-ripple-cactus-indigo-324x395.jpg")
+
+calathea = Plant.create(name: "Calathea Medallion", species: "Calathea Roseapicta", price: 45, exp_level: "Intermediate", size: "Medium", light_required: "Low to Bright Indirect", image: "https://bloomscape.com/wp-content/uploads/2019/03/bloomscape_product-calathea-medallion-charcoal-324x393.jpg")
+
+janet_craig = Plant.create(name: "Dracaena Janet Craig", species: "Dracaena Deremensis", price: 165, exp_level: "Beginner", size: "X-Large", light_required: "Low to Bright Indirect", image: "https://bloomscape.com/wp-content/uploads/2019/04/bloomscape_product-janet-craig-indigo-324x393.jpg")
+
+neon_prayer = Plant.create(name: "Neon Prayer Plant", species: "Maranta Leuconeura 'Marisela'", price: 45, exp_level: "Beginner", size: "Medium", light_required: "Low to Bright Indirect", image: "https://bloomscape.com/wp-content/uploads/2019/09/bloomscape_product_neon-prayer-plant-4-324x395.jpg")
+

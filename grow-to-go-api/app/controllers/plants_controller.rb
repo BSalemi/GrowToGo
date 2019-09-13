@@ -65,4 +65,29 @@ class PlantsController < ApplicationController
         render json: advanced
     end 
 
+    def find_low
+        low = Plant.all.select{|plant| plant.light_required.include? "Low"}
+        render json: low    
+    end 
+
+    def find_medium_indirect
+        medium = Plant.all.select{|plant| plant.light_required.include? "Medium"}
+        render json: medium 
+    end 
+
+    def find_bright_indirect
+        bright_indirect = Plant.all.select{|plant| plant.light_required.include? "Bright Indirect"}
+        render json: bright_indirect 
+    end 
+
+    def find_bright_direct 
+        bright_direct = Plant.all.select{|plant| plant.light_required.include? "Bright Direct"}
+        render json: bright_direct 
+    end 
+
+    def find_full_sun 
+        full_sun = Plant.all.select{|plant| plant.light_required.include? "Full Sun"}
+        render json: full_sun 
+    end 
+
 end
