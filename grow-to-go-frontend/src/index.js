@@ -6,6 +6,7 @@ const USERS_URL = `${BASE_URL}/users`
 
 let loggedIn = null
 let signedUp = false 
+let plantObj = {};
 
 
 const signUpForm = document.querySelector(".container")
@@ -20,32 +21,13 @@ const logoutBtn = document.querySelector(".logout-btn")
 const sortOptions = document.querySelector('.sort-menus')
 
 
-// console.log(cartBtn)
-// console.log(cartContainer)
-// console.log(mainContainer)
-// console.log(signUpForm)
-// console.log(addUserForm)
-// console.log(inputFields)
-// console.log(signUpBtn)
-
-function hideSignUpBtn(){
-    // signUpBtn.style.display = 'none',
-    signUpBtnPhrase.style.display = 'none',
+function hideSignUpForm(){
     signUpForm.style.display = 'none'
 }
 
-// signUpBtn.addEventListener('click', () => {
-//     signUpBtn.style.display = 'none',
-//     signUpBtnPhrase.style.display = 'none',
-//     signedUp = !signedUp
-//     if (!signedUp) {
-//         signUpForm.style.display = "none"
-//     } else {
-//         signUpForm.style.display = "block"
-//     }
-// })
 
-addUserForm.addEventListener('submit', function(e){
+
+signUpForm.addEventListener('submit', function(e){
     e.preventDefault()
     fetch(USERS_URL, {
         method: "POST",
@@ -60,9 +42,10 @@ addUserForm.addEventListener('submit', function(e){
     })
     .then(res => res.json())
     .then(function(object){
+        console.log(object, "object")
         loggedIn = object
         localStorage.loggedIn = object.id
-        hideSignUpBtn()
+        // hideSignUpBtn()
         renderLoggedInUser()
         }
     )
@@ -108,6 +91,7 @@ function renderLoggedInUser(){
 
 function checkout(event){
     if(loggedIn.carts[loggedIn.carts.length - 1].total > 0){
+    alert("Grow To Go thanks you for your purchase!")
     let cartId = event.target.dataset.cartId
     // console.log(cartId)
     fetch(BASE_URL + "/checkout", {
@@ -196,8 +180,9 @@ function removeFromCart(event){
 
 
 function checkForUser(){
-    console.log(localStorage.loggedIn)
+    // console.log(localStorage.loggedIn)
     if(localStorage.loggedIn){
+        console.log(localStorage.logged, "localstorage")
         let id = localStorage.loggedIn
         fetch(USERS_URL + "/" + id)
         .then(res => res.json())
@@ -206,11 +191,28 @@ function checkForUser(){
             console.log(loggedIn, "loggedIn")
             renderLoggedInUser()
         })
-        hideSignUpBtn();
+        hideSignUpForm();
     } else {
-        signUpBtn.style.display = "block"
+        signUpForm.style.display = "block"
     }
 }
 
+// function updateQuantity(){
+//     loggedIn.carts[loggedIn.carts.length - 1].cart_plants.forEach(cart_plant => {
+//         plantsObj[`${cart_plant.plant.name}`] ? += 1 : 1 // ternary operator 
+//     })
+//     for (const key in plantsObj) {
+    
+//     }
+// }
+
 checkForUser()
+
+
+//--create new function -- 
+
+//array of cart_plants
+//iterate over each cart plant and check for the plant
+//plantsObj[`${plant.name}] ? increment : one 
+//{full plant object} (for in or whatever to append to DOM)
 
