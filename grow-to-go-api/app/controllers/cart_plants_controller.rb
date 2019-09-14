@@ -18,8 +18,9 @@ class CartPlantsController < ApplicationController
                 include: {
                     cart_plants:{ 
                         include: :plant
-                    }},
-            }}, except: [:created_at, :updated_at]
+                }},
+            }
+        }, except: [:created_at, :updated_at]
     end 
    
     def destroy 
@@ -34,8 +35,9 @@ class CartPlantsController < ApplicationController
                 include: {
                     cart_plants:{ 
                         include: :plant
-                    }},
-            }}, except: [:created_at, :updated_at]
+                }},
+            }
+        }, except: [:created_at, :updated_at]
     end 
 
     private

@@ -36,7 +36,8 @@ class CartsController < ApplicationController
                 include: {
                     cart_plants:{ 
                         include: :plant
-                    }},
+                    }
+                },
             },
         }, except: [:created_at, :updated_at]
     end 

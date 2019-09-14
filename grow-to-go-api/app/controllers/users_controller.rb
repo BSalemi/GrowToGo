@@ -12,7 +12,8 @@ class UsersController < ApplicationController
                     include: {
                         cart_plants:{ 
                             include: :plant
-                        }},
+                        }
+                    },
                 },
                 }, except: [:created_at, :updated_at]
         else 
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
         user.save
         cart = Cart.create(user_id: user.id) if user.carts.length == 0
         user.carts << cart 
-        
+
         render json: user, :include => {
                 carts: {
                     except: [:created_at, :updated_at], 
@@ -34,7 +35,8 @@ class UsersController < ApplicationController
                     include: {
                         cart_plants:{ 
                             include: :plant
-                        }},
+                        }
+                    },
                 },
                 }, except: [:created_at, :updated_at]
     end 
