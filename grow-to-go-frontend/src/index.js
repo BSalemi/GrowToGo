@@ -91,7 +91,7 @@ function renderLoggedInUser(){
 
 function checkout(event){
     if(loggedIn.carts[loggedIn.carts.length - 1].total > 0){
-    alert("Grow To Go thanks you for your purchase!")
+    alert("Thank you for shopping at Grow To Go.\nCome back soon!")
     let cartId = event.target.dataset.cartId
     // console.log(cartId)
     fetch(BASE_URL + "/checkout", {
