@@ -21,10 +21,11 @@ class UsersController < ApplicationController
     end 
 
     def create 
-        user = User.find_or_create_by(email: params[:email])
-        if user.carts.length == 0    
-            cart = Cart.create(user_id: user.id)
-        end 
+        user = User.find_or_create_by(email: params[:email]) 
+        user.name = params[:name]
+        user.save
+        cart = Cart.create(user_id: user.id) if user.carts.length == 0
+        user.carts << cart 
         
         render json: user, :include => {
                 carts: {
