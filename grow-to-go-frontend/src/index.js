@@ -4,15 +4,10 @@ const CART_PLANTS_URL = `${BASE_URL}/cart_plants`
 const CARTS_URL = `${BASE_URL}/carts`
 const USERS_URL = `${BASE_URL}/users`
 
-let loggedIn = null
-let signedUp = false 
-let plantObj = {};
-
-
+const removeIcon = "http://icons.iconarchive.com/icons/icons8/windows-8/16/Editing-Delete-icon.png"
 const signUpForm = document.querySelector(".container")
 const addUserForm = document.querySelector(".signup-form")
 const inputFields = document.querySelectorAll(".input-text")
-// const signUpBtn = document.querySelector("#signup-btn")
 const signUpBtnPhrase = document.querySelector(".sign-up-btn")
 const mainContainer = document.querySelector("main")
 const cartContainer = document.querySelector(".cart-container")
@@ -20,12 +15,14 @@ const cartBtn = document.querySelector(".cart-button")
 const logoutBtn = document.querySelector(".logout-btn")
 const sortOptions = document.querySelector('.sort-menus')
 
+let loggedIn = null
+let signedUp = false 
+
+
 
 function hideSignUpForm(){
     signUpForm.style.display = 'none'
 }
-
-
 
 signUpForm.addEventListener('submit', function(e){
     e.preventDefault()
@@ -42,10 +39,8 @@ signUpForm.addEventListener('submit', function(e){
     })
     .then(res => res.json())
     .then(function(object){
-        console.log(object, "object")
         loggedIn = object
         localStorage.loggedIn = object.id
-        // hideSignUpBtn()
         renderLoggedInUser()
         }
     )
@@ -67,77 +62,36 @@ logoutBtn.addEventListener('click', () => {
 
 
 sortOptions.addEventListener('change', function(e){
-    console.log(e.target.value)
     fetch(BASE_URL + `/${e.target.value}`)
     .then(res => res.json())
     .then(plants => renderPlants(plants))
 })
 
 
-// function renderLoggedInUser(){
-//     let welcome = document.querySelector('#welcome')
-//     welcome.innertText = " "
-//     welcome.innerText = `Welcome ${loggedIn.name}!`
-//     cartContainer.innerHTML = " "
-//     updateQuantity()
-//     for (var name in plantsObj)
-
-
 function renderLoggedInUser(){
+    let currentCart = loggedIn.carts[loggedIn.carts.length - 1]
     let welcome = document.querySelector('#welcome')
     welcome.innertText = " "
     welcome.innerText = `Welcome ${loggedIn.name}!`
     cartContainer.innerHTML = " "
     updateQuantity()
     for (let name in plantsObj) {
-        console.log(plantsObj, "name")
-        console.log(plantsObj[name][0], "plantobj")
         let cart_plant = plantsObj[name][0]
         let total = (cart_plant.plant.price * plantsObj[name].length)
-        cartContainer.innerHTML += `<div id="cartplant-${cart_plant.id}"><p> <img src="http://icons.iconarchive.com/icons/icons8/windows-8/16/Editing-Delete-icon.png" onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}">
+        cartContainer.innerHTML += `<div id="cartplant-${cart_plant.id}"><p> <img src=${removeIcon} onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}">
         <strong>${cart_plant.plant.name}</strong> x ${plantsObj[name].length} - $${total} </p></div>`
     }
-    cartContainer.innerHTML += `<p> <strong>Total Price:</strong> $${loggedIn.carts[loggedIn.carts.length - 1].total}
-    <button class="checkout" onClick=checkout(event) data-cart-id="${loggedIn.carts[loggedIn.carts.length - 1].id}"> Checkout </button></p>`
+    cartContainer.innerHTML += `<p> <strong>Total Price:</strong> $${currentCart.total}
+    <button class="checkout" onClick=checkout(event) data-cart-id="${currentCart.id}"> Checkout </button></p>`
     fetchPlants() 
 }
-    // loggedIn.carts[loggedIn.carts.length - 1].cart_plants.forEach(cart_plant => {
-    //     let total = (cart_plant.plant.price * plantsObj[cart_plant.plant.name].length)
-    //     cartContainer.innerHTML += `<div id="cartplant-${cart_plant.id}"><p> <img src="http://icons.iconarchive.com/icons/icons8/windows-8/16/Editing-Delete-icon.png" onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}">
-    //     <strong>${cart_plant.plant.name}</strong> x ${plantsObj[cart_plant.plant.name].length} - $${total} </p></div>`
-    // })
-    // cartContainer.innerHTML += `<p> <strong>Total Price:</strong> $${loggedIn.carts[loggedIn.carts.length - 1].total}
-    // <button class="checkout" onClick=checkout(event) data-cart-id="${loggedIn.carts[loggedIn.carts.length - 1].id}"> Checkout </button></p>`
-//     fetchPlants() 
-// }
-
-
-
-  // for (const key in plantsObj) {
-    //     let total = (plantsObj[key].price * plantsCount[plantsObj[key].id])
-    //     console.log(total, "total")
-    //     console.log(plantsObj[key], "value")
-    //     cartContainer.innerHTML += `<div id="cartplant-${plantsObj[key.id]}"><p><img src="http://icons.iconarchive.com/icons/icons8/windows-8/16/Editing-Delete-icon.png" onClick=removeFromCart(event) data-cart-plant-id="${plantsObj[key].id}"><strong>${plantsObj[key].name}</strong> x ${plantsCount[key]} - $${total} </p> </div>`
-    // }}
-
-// let plantsCount = {}
-// function updateQuantity(){
-//     loggedIn.carts[loggedIn.carts.length - 1].cart_plants.forEach(cart_plant => {
-//         plantsCount[`${cart_plant.plant.name}`] ? += 1 : 1   
-// })
-    // for (const key in plantsObj) {
-    //     let total = (plantsObj[key].price * plantsCount[plantsObj[key].id])
-    //     console.log(total, "total")
-    //     console.log(plantsObj[key], "value")
-    //     cartContainer.innerHTML += `<div id="cartplant-${plantsObj[key.id]}"><p><img src="http://icons.iconarchive.com/icons/icons8/windows-8/16/Editing-Delete-icon.png" onClick=removeFromCart(event) data-cart-plant-id="${plantsObj[key].id}"><strong>${plantsObj[key].name}</strong> x ${plantsCount[key]} - $${total} </p> </div>`
-    // }}
-        
+    
 
 function checkout(event){
-    if(loggedIn.carts[loggedIn.carts.length - 1].total > 0){
+    let currentCart = loggedIn.carts[loggedIn.carts.length - 1]
+    if(currentCart.total > 0){
     alert("Thank you for shopping at Grow To Go.\n\nCome back soon!")
     let cartId = event.target.dataset.cartId
-    // console.log(cartId)
     fetch(BASE_URL + "/checkout", {
         method: "POST",
         headers: {
@@ -150,7 +104,6 @@ function checkout(event){
     })
     .then(res => res.json())
     .then(res => {
-        console.log(res, "response")
         loggedIn = res
         renderLoggedInUser()
     })
@@ -217,22 +170,18 @@ function removeFromCart(event){
     .then(res => res.json())
     .then(res => {
         loggedIn = res
-        console.log(loggedIn,"after remove")
         renderLoggedInUser()
     })
 }
 
 
 function checkForUser(){
-    // console.log(localStorage.loggedIn)
     if(localStorage.loggedIn){
-        console.log(localStorage.logged, "localstorage")
         let id = localStorage.loggedIn
         fetch(USERS_URL + "/" + id)
         .then(res => res.json())
         .then(function(res){
             loggedIn = res 
-            console.log(loggedIn, "loggedIn")
             renderLoggedInUser()
         })
         hideSignUpForm();
@@ -253,25 +202,8 @@ function updateQuantity(){
         }
     })
 }
-    // for (const key in plantsObj) {
-    //     let total = (plantsObj[key].price * plantsCount[plantsObj[key].id])
-    //     console.log(total, "total")
-    //     console.log(plantsObj[key], "value")
-    //     cartContainer.innerHTML += `<div id="cartplant-${plantsObj[key.id]}"><p><img src="http://icons.iconarchive.com/icons/icons8/windows-8/16/Editing-Delete-icon.png" onClick=removeFromCart(event) data-cart-plant-id="${plantsObj[key].id}"><strong>${plantsObj[key].name}</strong> x ${plantsCount[key]} - $${total} </p> </div>`
-    // }}
-        
-
-
-
-
-
+   
 
 checkForUser()
 
 
-//--create new function -- 
-
-//array of cart_plants
-//iterate over each cart plant and check for the plant
-//plantsObj[`${plant.name}] ? increment : one 
-//{full plant object} (for in or whatever to append to DOM)
