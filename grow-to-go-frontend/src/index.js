@@ -4,6 +4,7 @@ const CART_PLANTS_URL = `${BASE_URL}/cart_plants`
 const CARTS_URL = `${BASE_URL}/carts`
 const USERS_URL = `${BASE_URL}/users`
 
+const addIcon = "https://cdn2.iconfinder.com/data/icons/bwpx/icons/symbol_addition.gif"
 const removeIcon = "http://icons.iconarchive.com/icons/icons8/windows-8/16/Editing-Delete-icon.png"
 const signUpForm = document.querySelector(".container")
 const addUserForm = document.querySelector(".signup-form")
@@ -78,8 +79,8 @@ function renderLoggedInUser(){
     for (let name in plantsObj) {
         let cart_plant = plantsObj[name][0]
         let total = (cart_plant.plant.price * plantsObj[name].length)
-        cartContainer.innerHTML += `<div id="cartplant-${cart_plant.id}"><p> <img src=${removeIcon} onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}">
-        <strong>${cart_plant.plant.name}</strong> x ${plantsObj[name].length} - $${total} </p></div>`
+        cartContainer.innerHTML += `<div id="cartplant-${cart_plant.id}"><p> <img src=${removeIcon} onClick=removeFromCart(event) data-cart-plant-id="${cart_plant.id}"> 
+        <img src=${addIcon} onClick=addToCart(event) data-cart-plant-id="${cart_plant.id}" data-plant-id="${cart_plant.plant.id}"> <strong>${cart_plant.plant.name}</strong> x ${plantsObj[name].length} - $${total} </p></div>`
     }
     cartContainer.innerHTML += `<p> <strong>Total Price:</strong> $${currentCart.total}
     <button class="checkout" onClick=checkout(event) data-cart-id="${currentCart.id}"> Checkout </button></p>`
@@ -133,10 +134,8 @@ function renderPlants(plants){
 
 
 function addToCart(event){
-   
     let cartId = loggedIn.carts[loggedIn.carts.length - 1].id
     let plantCard = event.target.parentElement
-    let plantName = plantCard.querySelector('h2').innerText
     fetch(CART_PLANTS_URL, {
         method: "POST",
         headers: {
