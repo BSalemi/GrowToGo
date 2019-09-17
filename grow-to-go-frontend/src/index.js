@@ -110,10 +110,35 @@ function checkout(event){
     })
 }} 
 
+
+class Plant {
+
+
+    constructor(name, species, price, size, exp_level, light_required, image){
+        this.name = name 
+        this.species = species
+        this.price = price  
+        this.size = size
+        this.exp_level = exp_level
+        this.light_required = light_required
+        this.image = image
+        Plant.all.push(this)
+    }
+
+}
+
+Plant.all = []
+
 function fetchPlants(){
+    // Plant.all = []
     fetch(PLANTS_URL)
     .then(res => res.json())
-    .then(plants => renderPlants(plants))
+    .then(plants => renderPlants(plants))     
+    //     {plants.forEach(plant => {
+    //     new Plant(plant.name, plant.species, plant.price, plant.size, plant.exp_level, plant.light_required, plant.image)
+        
+    // })   
+    // renderPlants()})
 }
 
 function renderPlants(plants){
