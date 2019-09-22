@@ -21,6 +21,7 @@ Upon launching the application, the user can navigate to the path of index.html 
 From here, the user may:
 
   -Browse the inventory of plants for purchase.
+  
   -Sort for plants by:
 	
     Price
@@ -29,8 +30,11 @@ From here, the user may:
     Light Requirements  
 		
   -Add desired plant to their shopping cart by clicking the associated Add to Cart button.
+  
   -Hover over the Shopping Cart icon to display the user's cart.
+  
   -Remove a plant from their cart by clicking on the Trash Bin icon.
+  
   -Complete their transaction by clicking the Checkout button.
 
 ## Contributing:
