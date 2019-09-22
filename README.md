@@ -4,7 +4,7 @@ Flatiron School Javascript Project - GrowToGo is built with a Javascript fronten
 
 Blog post: https://bsalemi.github.io/javascript_portfolio_project_and_fetch_requests
 
-Installation:
+## Installation:
 
 After cloning the repo, install the dependencies by executing the below command in your terminal:
 
@@ -14,7 +14,7 @@ Launch the system using the below command in your terminal and navigating to you
 
 $ rails server
 
-Usage:
+## Usage:
 
 Upon launching the application, the user can navigate to the path of index.html to arrive at GrowToGo and where they will be prompted to sign up.
 
@@ -40,10 +40,10 @@ From here, the user may:
 
 -Complete their transaction by clicking the Checkout button.
 
-Contributing:
+## Contributing:
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/BSalemi/GrowToGo. This project is intended to be a safe, welcoming space for collaboration. Contributors are expected to adhere to the Contributor Covenant code of conduct.
 
-License:
+## License:
 
 The system is available as open source under the terms of the MIT License.
