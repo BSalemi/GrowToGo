@@ -2,6 +2,8 @@
 
 Flatiron School Javascript Project - GrowToGo is built with a Javascript frontend and a Rails API backend. GrowToGo is an ecommerce site where users can purchase houseplants.
 
+Blog post: https://bsalemi.github.io/javascript_portfolio_project_and_fetch_requests
+
 Installation:
 
 After cloning the repo, install the dependencies by executing the below command in your terminal:
