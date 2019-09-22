@@ -1,3 +1,6 @@
+![Grow To Go logo](https://fontmeme.com/permalink/190910/cd6f2ab7e2bb65d7267bc46d5894d410.png)
+            
+
 # GrowToGo
 
 Flatiron School Javascript Project - GrowToGo is built with a Javascript frontend and a Rails API backend. GrowToGo is an ecommerce site where users can purchase houseplants.
@@ -17,6 +20,8 @@ $ rails server
 ## Usage:
 
 Upon launching the application, the user can navigate to the path of index.html to arrive at GrowToGo and where they will be prompted to sign up.
+
+[![Grow To Go Screen Grab](https://i.imgur.com/wu2nM7M.png)](https://vimeo.com/360178372)
 
 From here, the user may:
    * Browse the inventory of plants for purchase.
